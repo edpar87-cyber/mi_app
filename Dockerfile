@@ -20,16 +20,16 @@ RUN composer install --no-interaction --prefer-dist
 
 RUN chmod -R 777 tmp logs
 
-# CakePHP webroot
+# Configurar CakePHP webroot
 ENV APACHE_DOCUMENT_ROOT=/var/www/html/webroot
 
 RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' \
     /etc/apache2/sites-available/*.conf
 
 RUN sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' \
-    /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf
+    /etc/apache2/apache2.conf \
+    /etc/apache2/conf-available/*.conf
 
-# Railway dynamic port
-RUN sed -i 's/80/${PORT}/g' /etc/apache2/ports.conf /etc/apache2/sites-enabled/000-default.conf
+EXPOSE 80
 
-CMD apache2-foreground
+CMD ["apache2-foreground"]
