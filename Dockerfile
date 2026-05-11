@@ -5,6 +5,9 @@ RUN install-php-extensions \
     pdo_mysql \
     mbstring
 
+# Instalar Composer
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+
 WORKDIR /app
 
 COPY . /app
