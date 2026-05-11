@@ -25,6 +25,6 @@ RUN composer install --no-interaction --prefer-dist
 
 RUN chmod -R 777 tmp logs
 
-EXPOSE 80
+EXPOSE 8080
 
 CMD ["frankenphp", "run", "--config", "/etc/caddy/Caddyfile"]   
