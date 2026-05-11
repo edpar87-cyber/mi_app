@@ -23,6 +23,8 @@ COPY . /app
 # Instalar dependencias CakePHP
 RUN composer install --no-interaction --prefer-dist
 
+RUN chmod -R 777 tmp logs
+
 EXPOSE 80
 
-CMD ["frankenphp", "run", "--config", "/etc/caddy/Caddyfile"]
+CMD ["frankenphp", "run", "--config", "/etc/caddy/Caddyfile"]   
