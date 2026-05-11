@@ -10,7 +10,6 @@ RUN docker-php-ext-install intl pdo pdo_mysql
 
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-# Activar mod_rewrite
 RUN a2enmod rewrite
 
 WORKDIR /var/www/html
@@ -21,7 +20,16 @@ RUN composer install --no-interaction --prefer-dist
 
 RUN chmod -R 777 tmp logs
 
-# Configurar Apache para CakePHP
-RUN sed -i 's!/var/www/html!/var/www/html/webroot!g' /etc/apache2/sites-available/000-default.conf
+# CakePHP webroot
+ENV APACHE_DOCUMENT_ROOT=/var/www/html/webroot
 
-EXPOSE 80
+RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' \
+    /etc/apache2/sites-available/*.conf
+
+RUN sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' \
+    /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf
+
+# Railway dynamic port
+RUN sed -i 's/80/${PORT}/g' /etc/apache2/ports.conf /etc/apache2/sites-enabled/000-default.conf
+
+CMD apache2-foreground
