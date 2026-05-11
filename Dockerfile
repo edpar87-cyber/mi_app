@@ -24,6 +24,9 @@ COPY . /app
 RUN composer install --no-interaction --prefer-dist
 
 RUN chmod -R 777 tmp logs
+RUN touch /app/tmp/database.sqlite
+RUN chmod -R 777 /app/tmp
+RUN chmod -R 777 /app/logs
 
 EXPOSE 80
 
