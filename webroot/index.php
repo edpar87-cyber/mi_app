@@ -25,8 +25,6 @@ if (PHP_SAPI === 'cli-server') {
         return false;
     }
 }
-echo "INDEX FUNCIONA";
-exit;
 require dirname(__DIR__) . '/vendor/autoload.php';
 
 use App\Application;
