@@ -1,0 +1,19 @@
+[variables]
+NIXPACKS_PHP_ROOT_DIR = "/app"
+
+[phases.setup]
+nixPkgs = [
+  "php82",
+  "php82Extensions.intl",
+  "php82Extensions.mbstring",
+  "php82Extensions.pdo_mysql",
+  "composer"
+]
+
+[phases.install]
+cmds = [
+  "composer install --ignore-platform-req=ext-intl"
+]
+
+[start]
+cmd = "php -S 0.0.0.0:$PORT -t webroot"

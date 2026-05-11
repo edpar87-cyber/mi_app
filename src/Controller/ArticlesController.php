@@ -15,13 +15,11 @@ class ArticlesController extends AppController
      *
      * @return \Cake\Http\Response|null|void Renders view
      */
-    public function index(): void
+    public function index()
     {
-         $articles = $this->Articles->find('all')
-            ->where(['published' => true])
-            ->orderBy(['created' => 'DESC']);
-
+        $articles = $this->Articles->find()->all();
         $this->set(compact('articles'));
+        
     }
 
     /**
