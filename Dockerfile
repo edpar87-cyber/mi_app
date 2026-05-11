@@ -1,30 +1,23 @@
-FROM dunglas/frankenphp
+FROM php:8.2-cli
 
-# Instalar paquetes del sistema
 RUN apt-get update && apt-get install -y \
     git \
     unzip \
-    zip
+    zip \
+    libicu-dev
 
-# Instalar extensiones PHP necesarias
-RUN install-php-extensions \
-    intl \
-    pdo_mysql \
-    mbstring \
-    zip
+RUN docker-php-ext-install intl pdo pdo_mysql
 
-# Instalar Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 WORKDIR /app
 
-COPY . /app
+COPY . .
 
-# Instalar dependencias CakePHP
 RUN composer install --no-interaction --prefer-dist
 
 RUN chmod -R 777 tmp logs
 
 EXPOSE 8080
 
-CMD ["frankenphp", "run", "--config", "/etc/caddy/Caddyfile"]   
+CMD php -S 0.0.0.0:8080 -t webroot
