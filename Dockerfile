@@ -22,6 +22,9 @@ RUN touch /app/tmp/test.sqlite
 RUN chmod -R 777 /app/tmp
 RUN chmod -R 777 /app/logs
 
+RUN bin/cake migrations migrate 
+RUN biin/cake migrations seed --seed ArticlesSeed
+
 EXPOSE 8080
 
 CMD php -S 0.0.0.0:8080 -t webroot
