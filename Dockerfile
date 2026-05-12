@@ -26,9 +26,6 @@ RUN chmod -R 777 /app/logs
 
 RUN chmod +x bin/cake
 
-RUN bin/cake migrations migrate 
-RUN bin/cake migrations seed --seed ArticlesSeed
-
 EXPOSE 8080
 
 CMD php -S 0.0.0.0:8080 -t webroot
