@@ -16,8 +16,9 @@ COPY . .
 
 RUN composer install --no-interaction --prefer-dist
 
-RUN chmod -R 777 tmp logs
+RUN mkdir -p /app/tmp
 RUN touch /app/tmp/database.sqlite
+RUN touch /app/tmp/test.sqlite
 RUN chmod -R 777 /app/tmp
 RUN chmod -R 777 /app/logs
 

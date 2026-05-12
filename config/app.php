@@ -287,23 +287,22 @@ return [
          */
         'default' => [
             'className' => Connection::class,
-            'driver' => Mysql::class,
+            'driver' => \Cake\Database\Driver\Sqlite::class,
             'persistent' => false,
-            'timezone' => 'UTC',
+             'database' => TMP . 'database.sqlite',
 
             /*
              * For MariaDB/MySQL the internal default changed from utf8 to utf8mb4, aka full utf-8 support
              */
-            'encoding' => 'utf8mb4',
+            'encoding' => 'utf8',
 
             /*
              * If your MySQL server is configured with `skip-character-set-client-handshake`
              * then you MUST use the `flags` config to set your charset encoding.
              * For e.g. `'flags' => [\PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8mb4']`
              */
-            'flags' => [],
             'cacheMetadata' => true,
-            'log' => false,
+            
 
             /*
              * Set identifier quoting to true if you are using reserved words or
@@ -330,14 +329,13 @@ return [
          */
         'test' => [
             'className' => Connection::class,
-            'driver' => Mysql::class,
+            'driver' => \Cake\Database\Driver\Sqlite::class,
             'persistent' => false,
-            'timezone' => 'UTC',
-            'encoding' => 'utf8mb4',
-            'flags' => [],
+            'database' => TMP . 'test.sqlite',
+            'encoding' => 'utf8',
             'cacheMetadata' => true,
             'quoteIdentifiers' => false,
-            'log' => false,
+            
             //'init' => ['SET GLOBAL innodb_stats_on_metadata = 0'],
         ],
     ],
