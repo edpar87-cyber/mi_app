@@ -1,38 +1,32 @@
-FROM php:8.2-apache
+FROM php:8.2-cli
 
-# Instalar dependencias necesarias
 RUN apt-get update && apt-get install -y \
-    libicu-dev \
-    libsqlite3-dev \
-    sqlite3 \
-    unzip \
     git \
-    && docker-php-ext-install intl pdo pdo_sqlite
+    unzip \
+    zip \
+    sqlite3 \
+    libsqlite3-dev \
+    libicu-dev
 
-# Activar mod_rewrite
-RUN a2enmod rewrite
+RUN docker-php-ext-install intl pdo pdo_sqlite
 
-# Instalar Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-# Copiar proyecto
-COPY . /var/www/html/
+WORKDIR /app
 
-WORKDIR /var/www/html
+COPY . .
 
-# Instalar dependencias de CakePHP
 RUN composer install --no-interaction --prefer-dist
 
-# Permisos
-RUN chown -R www-data:www-data /var/www/html/tmp
-RUN chown -R www-data:www-data /var/www/html/logs
+RUN mkdir -p /app/tmp
 
-# Apache apuntando a webroot
-ENV APACHE_DOCUMENT_ROOT /var/www/html/webroot
+RUN rm -f /app/tmp/database.sqlite
 
-RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' \
-/etc/apache2/sites-available/*.conf
+RUN touch /app/tmp/database.sqlite
 
-EXPOSE 80
+RUN chmod -R 777 /app/tmp
+RUN chmod -R 777 /app/logs
 
-CMD ["apache2-foreground"]
+EXPOSE 8080
+
+CMD ["sh", "-c", "php -S 0.0.0.0:${PORT:-8080} -t webroot"]
