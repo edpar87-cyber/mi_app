@@ -2,12 +2,12 @@ DROP TABLE IF EXISTS articles;
 
 CREATE TABLE articles (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    title VARCHAR(255) NOT NULL,
-    slug VARCHAR(191) NOT NULL,
+    title TEXT NOT NULL,
+    slug TEXT NOT NULL,
     body TEXT,
     published INTEGER DEFAULT 0,
-    created DATETIME,
-    modified DATETIME
+    created TEXT,
+    modified TEXT
 );
 
 INSERT INTO articles (
@@ -17,10 +17,11 @@ INSERT INTO articles (
     published,
     created,
     modified
-) VALUES (
+)
+VALUES (
     'Primer Post',
     'primer-post',
-    'Hola desde Railway y CakePHP',
+    'Hola desde Railway',
     1,
     datetime('now'),
     datetime('now')
