@@ -4,6 +4,7 @@ RUN apt-get update && apt-get install -y \
     git \
     unzip \
     zip \
+    sqlite3 \
     libicu-dev
 
 RUN docker-php-ext-install intl pdo pdo_mysql
@@ -18,12 +19,15 @@ RUN composer install --no-interaction --prefer-dist
 
 RUN mkdir -p /app/tmp
 RUN touch /app/tmp/database.sqlite
+RUN sqlite3 /app/tmp/database.sqlite < /app/config/schema.sql
 RUN touch /app/tmp/test.sqlite
 RUN chmod -R 777 /app/tmp
 RUN chmod -R 777 /app/logs
 
+RUN chmod +x bin/cake
+
 RUN bin/cake migrations migrate 
-RUN biin/cake migrations seed --seed ArticlesSeed
+RUN bin/cake migrations seed --seed ArticlesSeed
 
 EXPOSE 8080
 
