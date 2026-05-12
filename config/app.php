@@ -286,22 +286,21 @@ return [
          * in app_local.php depending on the application's needs.
          */
         'default' => [
-            'className' => Connection::class,
+            'className' => \Cake\Database\Connection::class,
             'driver' => \Cake\Database\Driver\Sqlite::class,
-            'persistent' => false,
              'database' => TMP . 'database.sqlite',
 
             /*
              * For MariaDB/MySQL the internal default changed from utf8 to utf8mb4, aka full utf-8 support
              */
-            'encoding' => 'utf8',
+            
 
             /*
              * If your MySQL server is configured with `skip-character-set-client-handshake`
              * then you MUST use the `flags` config to set your charset encoding.
              * For e.g. `'flags' => [\PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8mb4']`
              */
-            'cacheMetadata' => true,
+            
             
 
             /*
@@ -312,7 +311,7 @@ return [
              * decreases performance because each query needs to be traversed and
              * manipulated before being executed.
              */
-            'quoteIdentifiers' => false,
+            
 
             /*
              * During development, if using MySQL < 5.6, uncommenting the

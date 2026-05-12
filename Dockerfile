@@ -7,7 +7,7 @@ RUN apt-get update && apt-get install -y \
     sqlite3 \
     libicu-dev
 
-RUN docker-php-ext-install intl pdo pdo_mysql
+RUN docker-php-ext-install intl pdo pdo_sqlite
 
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
@@ -18,13 +18,13 @@ COPY . .
 RUN composer install --no-interaction --prefer-dist
 
 RUN mkdir -p /app/tmp
+
 RUN touch /app/tmp/database.sqlite
+
 RUN sqlite3 /app/tmp/database.sqlite < /app/config/schema.sql
-RUN touch /app/tmp/test.sqlite
+
 RUN chmod -R 777 /app/tmp
 RUN chmod -R 777 /app/logs
-
-RUN chmod +x bin/cake
 
 EXPOSE 8080
 
