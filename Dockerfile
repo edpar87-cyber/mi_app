@@ -8,7 +8,7 @@ RUN apt-get update && apt-get install -y \
     libsqlite3-dev \
     libicu-dev
 
-RUN docker-php-ext-install intl pdo pdo_sqlite
+RUN docker-php-ext-install intl pdo pdo_mysql
 
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
