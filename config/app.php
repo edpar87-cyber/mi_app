@@ -286,9 +286,7 @@ return [
          * in app_local.php depending on the application's needs.
          */
         'default' => [
-            'className' => \Cake\Database\Connection::class,
-            'driver' => \Cake\Database\Driver\Sqlite::class,
-             'database' => TMP . 'database.sqlite',
+            'url' => env('MYSQL_URL'),
 
             /*
              * For MariaDB/MySQL the internal default changed from utf8 to utf8mb4, aka full utf-8 support
@@ -327,15 +325,7 @@ return [
          * The test connection is used during the test suite.
          */
         'test' => [
-            'className' => Connection::class,
-            'driver' => \Cake\Database\Driver\Sqlite::class,
-            'persistent' => false,
-            'database' => TMP . 'test.sqlite',
-            'encoding' => 'utf8',
-            'cacheMetadata' => true,
-            'quoteIdentifiers' => false,
-            
-            //'init' => ['SET GLOBAL innodb_stats_on_metadata = 0'],
+            'url' => env('MYSQL_URL'),
         ],
     ],
 
