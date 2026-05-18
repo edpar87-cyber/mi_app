@@ -294,6 +294,7 @@ return [
             'password' => env('MYSQL_PASSWORD'),
             'database' => env('MYSQL_DATABASE'),
             'encoding' => 'utf8mb4',
+            'cacheMetadata' => true,
             /*
              * For MariaDB/MySQL the internal default changed from utf8 to utf8mb4, aka full utf-8 support
              */
@@ -333,10 +334,11 @@ return [
         'test' => [
             'className' => Connection::class,
             'driver' => Mysql::class,
-            'url' => env('MYSQL_URL'),
-            'encoding' => 'utf8mb4',
-            'cacheMetadata' => true,
-            'quoteIdentifiers' => false,
+            'host' => env('MYSQLHOST'),
+            'port' => env('MYSQLPORT'),
+            'username' => env('MYSQLUSER'),
+            'password' => env('MYSQLPASSWORD'),
+            'database' => env('MYSQLDATABASE'),
         ],
     ],
 
