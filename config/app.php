@@ -286,7 +286,12 @@ return [
          * in app_local.php depending on the application's needs.
          */
         'default' => [
+            'className' => Connection::class,
+            'driver' => Mysql::class,
             'url' => env('MYSQL_URL'),
+            'encoding' => 'utf8mb4',
+            'cacheMetadata' => true,
+            'quoteIdentifiers' => false,
 
             /*
              * For MariaDB/MySQL the internal default changed from utf8 to utf8mb4, aka full utf-8 support
@@ -325,7 +330,12 @@ return [
          * The test connection is used during the test suite.
          */
         'test' => [
+            'className' => Connection::class,
+            'driver' => Mysql::class,
             'url' => env('MYSQL_URL'),
+            'encoding' => 'utf8mb4',
+            'cacheMetadata' => true,
+            'quoteIdentifiers' => false,
         ],
     ],
 
