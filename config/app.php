@@ -288,9 +288,8 @@ return [
         'default' => [
             'className' => Connection::class,
             'driver' => Mysql::class,
-            'url' => Mysql::class,
-            'host' => 'mysql.random.internal',
-            'port' => 3306,
+            'host' => env('MYSQLHOST'),
+            'port' => env('MYSQLPORT'),
             'username' => env('MYSQL_USER'),
             'password' => env('MYSQL_PASSWORD'),
             'database' => env('MYSQL_DATABASE'),
@@ -335,7 +334,6 @@ return [
         'test' => [
             'className' => Connection::class,
             'driver' => Mysql::class,
-            'url' => env('MYSQL_URL'),
             'host' => env('MYSQLHOST'),
             'port' => env('MYSQLPORT'),
             'username' => env('MYSQLUSER'),
