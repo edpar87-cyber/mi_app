@@ -288,11 +288,12 @@ return [
         'default' => [
             'className' => Connection::class,
             'driver' => Mysql::class,
-            'url' => env('MYSQL_URL'),
+            'host' => env('MYSQL_URL'),
+            'port' => env('MYSQL_PORT'),
+            'username' => env('MYSQL_USER'),
+            'password' => env('MYSQL_PASSWORD'),
+            'database' => env('MYSQL_DATABASE'),
             'encoding' => 'utf8mb4',
-            'cacheMetadata' => true,
-            'quoteIdentifiers' => false,
-
             /*
              * For MariaDB/MySQL the internal default changed from utf8 to utf8mb4, aka full utf-8 support
              */
