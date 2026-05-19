@@ -288,38 +288,12 @@ return [
         'default' => [
             'className' => Connection::class,
             'driver' => Mysql::class,
-            'url' => env('MYSQL_URL'),
-            /*
-             * For MariaDB/MySQL the internal default changed from utf8 to utf8mb4, aka full utf-8 support
-             */
-            
-
-            /*
-             * If your MySQL server is configured with `skip-character-set-client-handshake`
-             * then you MUST use the `flags` config to set your charset encoding.
-             * For e.g. `'flags' => [\PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8mb4']`
-             */
-            
-            
-
-            /*
-             * Set identifier quoting to true if you are using reserved words or
-             * special characters in your table or column names. Enabling this
-             * setting will result in queries built using the Query Builder having
-             * identifiers quoted when creating SQL. It should be noted that this
-             * decreases performance because each query needs to be traversed and
-             * manipulated before being executed.
-             */
-            
-
-            /*
-             * During development, if using MySQL < 5.6, uncommenting the
-             * following line could boost the speed at which schema metadata is
-             * fetched from the database. It can also be set directly with the
-             * mysql configuration directive 'innodb_stats_on_metadata = 0'
-             * which is the recommended value in production environments
-             */
-            //'init' => ['SET GLOBAL innodb_stats_on_metadata = 0'],
+            'host' => env('MYSQLHOST'),
+            'port' => env('MYSQLPORT'),
+            'username' => env('MYSQLUSER'),
+            'password' => env('MYSQLPASSWORD'),
+            'database' => env('MYSQLDATABASE'),
+            'encoding' => 'utf8mb4',
         ],
 
         /*
