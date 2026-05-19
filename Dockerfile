@@ -1,14 +1,10 @@
-FROM php:8.2-cli
+FROM php:8.2-apache
 
 RUN apt-get update && apt-get install -y \
     git \
     unzip \
-    zip \
-    sqlite3 \
-    libsqlite3-dev \
-    libicu-dev
-
-RUN docker-php-ext-install intl pdo pdo_mysql
+    libicu-dev && \
+    docker-php-ext-install intl pdo pdo_mysql mysqli
 
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
@@ -18,15 +14,9 @@ COPY . .
 
 RUN composer install --no-interaction --prefer-dist
 
-RUN mkdir -p /app/tmp
+RUN chown -R www-data /var/www/html/tmp
+RUN chown -R www-data /var/www/html/logs
 
-RUN rm -f /app/tmp/database.sqlite
+EXPOSE 80
 
-RUN sqlite3 /app/tmp/database.sqlite < /app/config/schema.sql
-
-RUN chmod -R 777 /app/tmp
-RUN chmod -R 777 /app/logs
-
-EXPOSE 8080
-
-CMD ["sh", "-c", "php -S 0.0.0.0:${PORT:-8080} -t webroot"]
+CMD ["apache2-foreground"]

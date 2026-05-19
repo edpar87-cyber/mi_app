@@ -288,16 +288,7 @@ return [
         'default' => [
             'className' => Connection::class,
             'driver' => Mysql::class,
-            'persistent' => false,
-            'host' => env('mysql.railway.internal'),
-            'port' => env('3306'),
-            'username' => env('root'),
-            'password' => env('ghIbcyrdRuBrUWMTATsmLFZKYTwYHAmX'),
-            'database' => env('railway'),
-            'encoding' => 'utf8mb4',
-            'timezone' => 'UTC',
-            'cacheMetadata' => true,
-            'quoteIdentifiers' => false,
+            'url' => env('MYSQL_URL'),
             /*
              * For MariaDB/MySQL the internal default changed from utf8 to utf8mb4, aka full utf-8 support
              */
