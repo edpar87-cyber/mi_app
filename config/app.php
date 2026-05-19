@@ -288,11 +288,11 @@ return [
         'default' => [
             'className' => Connection::class,
             'driver' => Mysql::class,
-            'host' => env('MYSQLHOST'),
-            'port' => env('MYSQLPORT'),
-            'username' => env('MYSQLUSER'),
-            'password' => env('MYSQLPASSWORD'),
-            'database' => env('MYSQLDATABASE'),
+            'host' => 'mysql.railway.internal',
+            'port' => 3306,
+            'username' => 'rootL',
+            'password' => 'ghIbcyrdRuBrUWMTATsmLFZKYTwYHAmXL',
+            'database' => 'railway',
             'encoding' => 'utf8mb4',
         ],
 
