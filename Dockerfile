@@ -16,7 +16,6 @@ RUN composer install --no-interaction --prefer-dist
 
 RUN mkdir -p /app/tmp
 RUN rm -f /app/tmp/database.sqlite
-RUN sqlite3 /app/tmp/database.sqlite < /app/config/schema.sql
 
 RUN chmod -R 777 /app/tmp
 RUN chmod -R 777 /app/logs
