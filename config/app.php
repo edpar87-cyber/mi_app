@@ -288,11 +288,11 @@ return [
         'default' => [
             'className' => \Cake\Database\Connection::class,
             'driver' => \Cake\Database\Driver\Mysql::class,
-            'host' => env('MYSQLHOST', 'mysql'),
-            'port' => '3306',
-            'username' => env('root'),
-            'password' => env('ghIbcyrdRuBrUWMTATsmLFZKYTwYHAmX'),
-            'database' => env('railway'),
+            'host' => $_ENV('MYSQLHOST', 'mysql'),
+            'port' => $_ENV('MYSQLPORT', '3306'),
+            'username' => $_ENV('MYSQLUSER', 'root'),
+            'password' => $_ENV('MYSQLPASSWORD', 'ghIbcyrdRuBrUWMTATsmLFZKYTwYHAmX'),
+            'database' => $_ENV('MYSQLDATABASE', 'railway'),
             'encoding' => 'utf8mb4',
         ],
 
@@ -302,11 +302,11 @@ return [
         'test' => [
             'className' => \Cake\Database\Connection::class,
             'driver' => \Cake\Database\Driver\Mysql::class,
-            'host' => env('MYSQLHOST'),
-            'port' => env('MYSQLPORT'),
-            'username' => env('MYSQLUSER'),
-            'password' => env('MYSQLPASSWORD'),
-            'database' => env('MYSQLDATABASE'),
+            'host' => $_ENV('MYSQLHOST'),
+            'port' => $_ENV('MYSQLPORT'),
+            'username' => $_ENV('MYSQLUSER'),
+            'password' => $_ENV('MYSQLPASSWORD'),
+            'database' => $_ENV('MYSQLDATABASE'),
         ],
     ],
 
