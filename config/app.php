@@ -286,12 +286,12 @@ return [
          * in app_local.php depending on the application's needs.
          */
         'default' => [
-            'className' => Connection::class,
-            'driver' => Mysql::class,
-            'host' => 'mysql.railway.internal',
-            'port' => 3306,
-            'username' => 'rootL',
-            'password' => 'ghIbcyrdRuBrUWMTATsmLFZKYTwYHAmXL',
+            'className' => \Cake\Database\Connection::class,
+            'driver' => \Cake\Database\Driver\Mysql::class,
+            'host' => '0.0.0.0',
+            'port' => '3306',
+            'username' => 'root',
+            'password' => 'ghIbcyrdRuBrUWMTATsmLFZKYTwYHAmX',
             'database' => 'railway',
             'encoding' => 'utf8mb4',
         ],
@@ -300,8 +300,8 @@ return [
          * The test connection is used during the test suite.
          */
         'test' => [
-            'className' => Connection::class,
-            'driver' => Mysql::class,
+            'className' => \Cake\Database\Connection::class,
+            'driver' => \Cake\Database\Driver\Mysql::class,
             'host' => env('MYSQLHOST'),
             'port' => env('MYSQLPORT'),
             'username' => env('MYSQLUSER'),
