@@ -286,13 +286,13 @@ return [
          * in app_local.php depending on the application's needs.
          */
         'default' => [
-            'className' => \Cake\Database\Connection::class,
-            'driver' => \Cake\Database\Driver\Mysql::class,
-            'host' => $_ENV('MYSQLHOST', 'mysql'),
-            'port' => $_ENV('MYSQLPORT', '3306'),
-            'username' => $_ENV('MYSQLUSER', 'root'),
-            'password' => $_ENV('MYSQLPASSWORD', 'ghIbcyrdRuBrUWMTATsmLFZKYTwYHAmX'),
-            'database' => $_ENV('MYSQLDATABASE', 'railway'),
+            'className' => 'Cake\Database\Connection',
+            'driver' => 'Cake\Database\Driver\Mysql',
+            'host' => $_ENV['MYSQLHOST'] ?? 'mysql',
+            'port' => $_ENV['MYSQLPORT'] ?? '3306',
+            'username' => $_ENV['MYSQLUSER'] ?? 'root',
+            'password' => $_ENV['MYSQLPASSWORD'] ?? 'ghIbcyrdRuBrUWMTATsmLFZKYTwYHAmX',
+            'database' => $_ENV['MYSQLDATABASE'] ?? 'railway',
             'encoding' => 'utf8mb4',
         ],
 
@@ -300,13 +300,13 @@ return [
          * The test connection is used during the test suite.
          */
         'test' => [
-            'className' => \Cake\Database\Connection::class,
-            'driver' => \Cake\Database\Driver\Mysql::class,
-            'host' => $_ENV('MYSQLHOST'),
-            'port' => $_ENV('MYSQLPORT'),
-            'username' => $_ENV('MYSQLUSER'),
-            'password' => $_ENV('MYSQLPASSWORD'),
-            'database' => $_ENV('MYSQLDATABASE'),
+            'className' => 'Cake\Database\Connection',
+            'driver' => 'Cake\Database\Driver\Mysql',
+            'host' => $_ENV['MYSQLHOST'] ?? 'mysql',
+            'port' => $_ENV['MYSQLPORT'] ?? '3306',
+            'username' => $_ENV['MYSQLUSER'] ?? 'root',
+            'password' => $_ENV['MYSQLPASSWORD'] ?? 'ghIbcyrdRuBrUWMTATsmLFZKYTwYHAmX',
+            'database' => $_ENV['MYSQLDATABASE'] ?? 'railway',
         ],
     ],
 
