@@ -10,10 +10,8 @@ nixPkgs = [
   "composer"
 ]
 
-[phases.install]
-cmds = [
-  "composer install --ignore-platform-req=ext-intl"
-]
+[phases.setup]
+nixPkgs = ["php", "php83Extensions.pdo_mysql"]
 
 [start]
 cmd = "php -S 0.0.0.0:$PORT -t webroot"
