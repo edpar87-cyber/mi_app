@@ -288,11 +288,11 @@ return [
         'default' => [
             'className' => 'Cake\Database\Connection',
             'driver' => 'Cake\Database\Driver\Mysql',
-            'host' => $_ENV['MYSQLHOST'] ?? 'mysql',
-            'port' => $_ENV['MYSQLPORT'] ?? '3306',
-            'username' => $_ENV['MYSQLUSER'] ?? 'root',
-            'password' => $_ENV['MYSQLPASSWORD'] ?? 'ghIbcyrdRuBrUWMTATsmLFZKYTwYHAmX',
-            'database' => $_ENV['MYSQLDATABASE'] ?? 'railway',
+            'host' => 'mysql',
+            'port' => '3306',
+            'username' => $_ENV['MYSQLUSER'] ?? '',
+            'password' => $_ENV['MYSQLPASSWORD'] ?? '',
+            'database' => $_ENV['MYSQLDATABASE'] ?? '',
             'encoding' => 'utf8mb4',
         ],
 
