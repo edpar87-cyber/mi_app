@@ -1,21 +1,23 @@
-FROM php:8.2-cli
+FROM php:8.2-apache
 
 RUN apt-get update && apt-get install -y \
-git \
-unzip \ 
-libicu-dev \
-default-mysql-client \
-&& docker-php-ext-install intl pdo pdo_mysql mysqli
+    libicu-dev \
+    libzip-dev \
+    zip \
+    unzip \
+    git \
+    && docker-php-ext-install intl pdo pdo_mysql mysqli
+
+RUN a2enmod rewrite
 
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-WORKDIR /app
+WORKDIR /var/www/html
 
 COPY . .
 
-RUN composer install --no-interaction --prefer-dist
-RUN docker-php-ext-install pdo pdo_mysql
+RUN composer install --no-dev --optimize-autoloader
 
-EXPOSE 8080
+RUN chown -R www-data:www-data /var/www/html
 
-CMD php -S 0.0.0.0:$PORT -t webroot
+EXPOSE 80
