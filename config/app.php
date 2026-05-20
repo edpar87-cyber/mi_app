@@ -286,19 +286,19 @@ return [
          * in app_local.php depending on the application's needs.
          */
         'default' => [
-            'className' => 'Cake\Database\Connection',
-            'driver' => 'Cake\Database\Driver\Mysql',
-            'persistent' => false,
-            'host' => env('DB_HOST'),
-            'username' => env('DB_USERNAME'),
-            'password' => env('DB_PASSWORD'),
-            'database' => env('DB_DATABASE'),
-            'encoding' => 'utf8mb4',
-            'timezone' => 'UTC',
-            'cacheMetadata' => true,
-            'quoteIdentifiers' => false,
-            'port' => env('DB_PORT'),
-        ],
+        'className' => \Cake\Database\Connection::class,
+        'driver' => \Cake\Database\Driver\Mysql::class,
+        'persistent' => false,
+        'host' => getenv('DB_HOST') ?: '127.0.0.1',
+        'username' => getenv('DB_USERNAME') ?: 'root',
+        'password' => getenv('DB_PASSWORD') ?: '',
+        'database' => getenv('DB_DATABASE') ?: 'railway',
+        'port' => getenv('DB_PORT') ?: '3306',
+        'encoding' => 'utf8mb4',
+        'timezone' => 'UTC',
+        'cacheMetadata' => true,
+        'quoteIdentifiers' => false,
+    ],
 
         /*
          * The test connection is used during the test suite.
