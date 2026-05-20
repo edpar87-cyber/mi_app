@@ -14,6 +14,7 @@ WORKDIR /app
 COPY . .
 
 RUN composer install --no-interaction --prefer-dist
+RUN docker-php-ext-install pdo pdo_mysql
 
 EXPOSE 8080
 
