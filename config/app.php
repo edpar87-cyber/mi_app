@@ -286,11 +286,18 @@ return [
          * in app_local.php depending on the application's needs.
          */
         'default' => [
-            'host' => env('DB_HOST'),
-            'port' => env('DB_PORT'),
-            'username' => env('DB_USER'),
-            'password' => env('DB_PASSWORD'),
-            'database' => env('DB_DATABASE'),
+            'className' => 'Cake\Database\Connection',
+            'driver' => 'Cake\Database\Driver\Mysql',
+            'persistent' => false,
+            'host' => env('DB_HOST', 'localhost'),
+            'username' => env('DB_USERNAME', 'root'),
+            'password' => env('DB_PASSWORD', ''),
+            'database' => env('DB_DATABASE', 'mi_app'),
+            'encoding' => 'utf8mb4',
+            'timezone' => 'UTC',
+            'cacheMetadata' => true,
+            'quoteIdentifiers' => false,
+            'port' => env('DB_PORT', '3306'),
         ],
 
         /*
