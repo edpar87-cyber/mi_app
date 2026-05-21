@@ -7,7 +7,7 @@ use Cake\ORM\Query\SelectQuery;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
-
+use Cake\Utility\Text;
 /**
  * Articles Model
  *
@@ -63,9 +63,7 @@ class ArticlesTable extends Table
         $validator
             ->scalar('slug')
             ->maxLength('slug', 191)
-            ->requirePresence('slug', 'create')
-            ->notEmptyString('slug')
-            ->add('slug', 'unique', ['rule' => 'validateUnique', 'provider' => 'table']);
+            ->allowEmptyArray('slug');
 
         $validator
             ->scalar('body')
@@ -91,4 +89,5 @@ class ArticlesTable extends Table
 
         return $rules;
     }
+    
 }
