@@ -9,13 +9,15 @@ RUN apt-get update && apt-get install -y \
 
 RUN docker-php-ext-configure intl
 
-RUN docker-php-ext-install \
-    intl \
-    pdo \
-    pdo_mysql
+RUN docker-php-ext-install intl pdo pdo_mysql
 
-RUN a2dismod mpm_event
+# Desactivar TODOS los MPM
+RUN a2dismod mpm_event || true
+RUN a2dismod mpm_worker || true
+
+# Activar SOLO prefork
 RUN a2enmod mpm_prefork
+
 RUN a2enmod rewrite
 
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
@@ -28,4 +30,4 @@ ENV COMPOSER_ALLOW_SUPERUSER=1
 
 RUN composer install --optimize-autoloader --no-interaction
 
-EXPOSE 80
+CMD ["apache2-foreground"]

@@ -303,12 +303,18 @@ return [
          * The test connection is used during the test suite.
          */
         'test' => [
-          'className' => 'Cake\Database\Connection', 
-          'driver' => 'Cake\Database\Driver\Mysql', 
-          'database' => TMP . 'tests.sqlite',
-            'encoding' => 'utf8',
+            'className' => 'Cake\Database\Connection',
+            'driver' => 'Cake\Database\Driver\Mysql',
+            'persistent' => false,
+            'host' => env('MYSQLHOST'),
+            'username' => env('MYSQLUSER'),
+            'password' => env('MYSQLPASSWORD'),
+            'database' => env('MYSQLDATABASE'),
+            'port' => env('MYSQLPORT'),
+            'encoding' => 'utf8mb4',
+            'timezone' => 'UTC',
             'cacheMetadata' => true,
-            'log' => false,
+             'log' => false,
         ],
     ],
 
