@@ -1,0 +1,7 @@
+vendor
+tmp
+logs
+.git
+.github
+.vscode
+node_modules
