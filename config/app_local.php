@@ -16,19 +16,18 @@ return [
             'className' => 'Cake\Database\Connection',
             'driver' => 'Cake\Database\Driver\Mysql',
 
-            'host' => 'mysql.railway.internal',
-            'port' => 3306,
+            'host' => env('MYSQLHOST'),
+            'port' => env('MYSQLPORT'),
 
-            'username' => 'root',
-            'password' => '=ghIbcyrdRuBrUWMTATsmLFZKYTwYHAmX',
+            'username' => env('MYSQLUSER'),
+            'password' => env('MYSQLPASSWORD'),
 
-            'database' => 'railway',
+            'database' => env('MYSQLDATABASE'),
 
             'persistent' => false,
             'encoding' => 'utf8mb4',
             'timezone' => 'UTC',
             'cacheMetadata' => true,
-            'log' => true,
         ],
 
         'test' => [
