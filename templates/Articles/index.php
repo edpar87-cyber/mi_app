@@ -5,7 +5,11 @@
         <h2>
             <?= $this->Html->link(
                 h($article->title),
-                ['action' => 'view', $article->slug]
+                [
+                    'controller' => 'Articles',
+                    'action' => 'view',
+                    'slug' => $article->slug
+                ]
             ) ?>
         </h2>
         <p>
