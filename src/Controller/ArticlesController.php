@@ -31,7 +31,6 @@ class ArticlesController extends AppController
      */
    public function view($slug = null)
 {
-    die('SLUG RECIBIDO: ' . var_export($slug, true));
 
     $article = $this->Articles
         ->find()
