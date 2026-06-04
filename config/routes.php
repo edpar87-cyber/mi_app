@@ -68,7 +68,7 @@ return function (RouteBuilder $routes): void {
         ['controller' => 'Articles', 'action' => 'view']
         )
         ->setPatterns([
-        'slug' => '[a-z0-9\-]+'
+        'slug' => '[A-Z0-9\-]+'
         ])
         ->setPass(['slug']);
 
