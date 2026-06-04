@@ -19,4 +19,7 @@
     </article>
 <?php endforeach; ?>
 
-<?= $this->Html->link('New Article', ['action' => 'add'], ['class' => 'button']) ?>
+<?= $this->Html->link(
+    h($article->title),
+    ['action' => 'view', $article->slug]
+)?>
