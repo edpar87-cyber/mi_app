@@ -60,6 +60,20 @@ return function (RouteBuilder $routes): void {
         /*
          * ...and connect the rest of 'Pages' controller's URLs.
          */
+        $builder->connect('/articles/add', [
+    'controller' => 'Articles',
+    'action' => 'add'
+]);
+
+$builder->connect('/articles/edit/*', [
+    'controller' => 'Articles',
+    'action' => 'edit'
+]);
+
+$builder->connect('/articles/delete/*', [
+    'controller' => 'Articles',
+    'action' => 'delete'
+]);
         $builder->connect('/articles/{slug}',
         ['controller' => 'Articles', 'action' => 'view']
         )
