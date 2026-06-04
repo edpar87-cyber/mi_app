@@ -60,12 +60,12 @@ return function (RouteBuilder $routes): void {
         /*
          * ...and connect the rest of 'Pages' controller's URLs.
          */
-        $builder->connect('/pages/*', ['controller' => 'Pages', 'action' => 'display']);
-        $builder->connect(
-            '/articles/{slug}',
-            ['controller' => 'Articles', 'action' => 'view']
+        $builder->connect('/articles/{slug}',
+        ['controller' => 'Articles', 'action' => 'view']
         )
-        ->setPatterns(['slug' => '[a-zA-Z0-9\-]+'])
+        ->setPatterns([
+        'slug' => '[a-z0-9\-]+'
+        ])
         ->setPass(['slug']);
 
         /*
