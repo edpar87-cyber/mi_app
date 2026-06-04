@@ -64,16 +64,6 @@ return function (RouteBuilder $routes): void {
     'controller' => 'Articles',
     'action' => 'add'
 ]);
-
-$builder->connect('/articles/edit/*', [
-    'controller' => 'Articles',
-    'action' => 'edit'
-]);
-
-$builder->connect('/articles/delete/*', [
-    'controller' => 'Articles',
-    'action' => 'delete'
-]);
         $builder->connect('/articles/{slug}',
         ['controller' => 'Articles', 'action' => 'view']
         )
