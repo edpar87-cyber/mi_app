@@ -30,17 +30,14 @@ class ArticlesController extends AppController
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
     public function view($slug = null)
-{
-    debug($slug);
-    die();
+    {
+         $article = $this->Articles
+             ->find()
+             ->where(['slug' => $slug])
+            ->firstOrFail();
 
-    $article = $this->Articles
-        ->find()
-        ->where(['slug' => $slug])
-        ->firstOrFail();
-
-    $this->set(compact('article'));
-}
+        $this->set(compact('article'));
+    }
 
     /**
      * Add method
